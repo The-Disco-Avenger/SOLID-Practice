@@ -17,13 +17,12 @@ namespace SOLID_Practice.Powers
         public int[] Location { get ; set ; }
         public int PowerType { get; set; }
 
-        public Attack(string title, string description, int pointCost,int[] location, IGamePiece caster)
+        public Attack(string title, string description, int pointCost,int[] location)
         {
             Title = title;
             Description = description;
             PointCost = pointCost;
             Location = location;
-            Caster = caster;
             PowerType = 1;
 
         }

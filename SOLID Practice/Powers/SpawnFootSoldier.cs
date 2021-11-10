@@ -24,14 +24,22 @@ namespace SOLID_Practice.Powers
             Title = title;
             Caster = caster;
             Location = location;
-            Powers.Add(new Attack("Swing Sword", "swings there sword", 0, null, caster));
             PointCost = 0;
             PowerType = 3;
         }
 
         public IGamePiece Summon(int[] target, string name, IGameBoardController GameBoard)
         {
-            return new Troop(name+" "+Title, 3, 5, target, Powers, PointCost, 1, 1, 2, Caster.Team);
+            List<IPower> powers = new List<IPower> { new Attack("Swing Sword", "swings there sword", 0, null) };
+
+            Troop summonedTroop =  new Troop(name+" "+Title, 3, 5, target, powers, PointCost, 1, 1, 2, Caster.Team);
+         
+            foreach (IPower power in summonedTroop.Powers)
+            {
+                power.Caster = summonedTroop;
+            }
+            
+            return summonedTroop;
         }
 
         public bool Action(IGamePiece target)
